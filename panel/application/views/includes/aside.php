@@ -58,12 +58,6 @@
 						<span class="menu-text">Dashboard</span>
 					</a>
 				</li>
-				<li>
-					<a href="javascript:void(0)">
-						<i class="menu-icon zmdi zmdi-settings zmdi-hc-lg"></i>
-						<span class="menu-text">Settings</span>
-					</a>
-				</li>
 				<li class="has-submenu">
 					<a href="javascript:void(0)" class="submenu-toggle">
 						<i class="fa fa-image"></i>

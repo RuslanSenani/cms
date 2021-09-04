@@ -38,11 +38,6 @@
 	</main>
 	<!--========== END app main -->
 
-
-	<!-- SIDE PANEL -->
-	<?php $this->load->view("includes/right-asidebar"); ?>
-	<!-- /#side-panel -->
-
 	<!-- SCRIPT -->
 	<?php $this->load->view("includes/include_script"); ?>
 	<!-- /#scripts -->
