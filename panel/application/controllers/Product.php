@@ -29,8 +29,6 @@ class Product extends CI_Controller
         $viewData->subViewFolder = "add";
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
-
-
     public function insert()
     {
         $this->load->library("form_validation");
@@ -50,8 +48,9 @@ class Product extends CI_Controller
                 "url" => convertToSeo($this->input->post("title")),
                 "isActive" => true
             ));
+            //TODO Alert Olunacaq
             if ($insert) {
-                echo "Success";
+                redirect(base_url("product"));
             } else {
                 echo "Exeption";
             }
@@ -62,5 +61,20 @@ class Product extends CI_Controller
             $viewData->form_error = true;
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
+    }
+
+    public function update_form($id)
+    {
+
+        $viewData = new stdClass();
+        /* Bazadan Products Table-den Datalarin getirilmesi*/
+        $item = $this->product_model->get(array(
+            "id" => $id
+        ));
+
+        $viewData->viewFolder = $this->viewFolder;
+        $viewData->subViewFolder = "update";
+        $viewData->item = $item;
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 }
