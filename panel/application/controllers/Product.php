@@ -77,4 +77,43 @@ class Product extends CI_Controller
         $viewData->item = $item;
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
+    public function update($id)
+    {
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("title", "Title", "required|trim");
+        $this->form_validation->set_message(
+            array(
+                "required" => "<b>{field}</b> Bolmesi Doldurulmalidir Bura Bazadan Tercumeler Gelecek",
+            )
+        );
+
+        $validation = $this->form_validation->run();
+
+        if ($validation) {
+            $update = $this->product_model->update(array(
+                "id" => $id
+            ), array(
+                "title" => $this->input->post("title"),
+                "description" => $this->input->post("description"),
+                "url" => convertToSeo($this->input->post("title")),
+                "updatedAt" => date("Y-m-d H:i:d")
+            ));
+            //TODO Alert Olunacaq
+            if ($update) {
+                redirect(base_url("product"));
+            } else {
+                redirect(base_url("product"));
+            }
+        } else {
+            $item = $this->product_model->get(array(
+                "id" => $id
+            ));
+            $viewData = new stdClass();
+            $viewData->viewFolder = $this->viewFolder;
+            $viewData->subViewFolder = "update";
+            $viewData->form_error = true;
+            $viewData->item = $item;
+            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+        }
+    }
 }

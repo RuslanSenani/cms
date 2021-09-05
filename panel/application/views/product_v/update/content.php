@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-12">
         <h4 class="m-b-lg">
-            Update  Product
+            Update Product
         </h4>
     </div>
     <div class="col-md-12">
         <div class="widget">
             <hr class="widget-separator">
             <div class="widget-body">
-                <form action="<?= base_url("product/insert"); ?>" method="POST">
+                <form action="<?= base_url("product/update/$item->id"); ?>" method="POST">
                     <div class="form-group">
                         <label>Title</label>
                         <input class="form-control" placeholder="Title" name="title" value="<?= $item->title; ?>">
