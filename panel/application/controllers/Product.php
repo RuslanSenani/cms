@@ -44,7 +44,17 @@ class Product extends CI_Controller
         $validation = $this->form_validation->run();
 
         if ($validation) {
-            echo "Saved";
+            $insert = $this->product_model->insert(array(
+                "title" => $this->input->post("title"),
+                "description" => $this->input->post("description"),
+                "url" => "test..",
+                "isActive" => true
+            ));
+            if ($insert) {
+                echo "Success";
+            } else {
+                echo "Exeption";
+            }
         } else {
             $viewData = new stdClass();
             $viewData->viewFolder = $this->viewFolder;
