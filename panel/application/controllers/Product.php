@@ -47,7 +47,7 @@ class Product extends CI_Controller
             $insert = $this->product_model->insert(array(
                 "title" => $this->input->post("title"),
                 "description" => $this->input->post("description"),
-                "url" => "test..",
+                "url" => convertToSeo($this->input->post("title")),
                 "isActive" => true
             ));
             if ($insert) {
