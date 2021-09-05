@@ -33,6 +33,20 @@ class Product extends CI_Controller
 
     public function insert()
     {
-        echo "Inserted";
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("title", "Title", "required|trim");
+        $this->form_validation->set_message(
+            array(
+                "required" => "<b>{field}</b> Bolmesi Doldurulmalidir Bura Bazadan Tercumeler Gelecek",
+            )
+        );
+
+        $validation = $this->form_validation->run();
+
+        if ($validation) {
+            echo "Saved";
+        } else {
+            echo validation_errors();
+        }
     }
 }
