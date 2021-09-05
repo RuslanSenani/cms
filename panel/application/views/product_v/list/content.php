@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <h4 class="m-b-lg">
             Product List
-            <a href="#" class="btn btn-outline btn-primary btn-xs pull-right"> <i class="fa fa-plus"></i> Add New </a>
+            <a href="<?= base_url("product/new_form"); ?>" class="btn btn-outline btn-primary btn-xs pull-right"> <i class="fa fa-plus"></i> Add New </a>
         </h4>
     </div>
     <div class="col-md-12">
@@ -15,7 +15,7 @@
 
                     <?php if (empty($items)) { ?>
                         <div class="alert alert-info text-center">
-                            <p>There is no data available here. Click please <a href="#">Add</a></p>
+                            <p>There is no data available here. Click please <a href="<?= base_url("product/new_form"); ?>">Add</a></p>
                         </div>
                     <?php  } else { ?>
 
