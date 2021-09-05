@@ -13,41 +13,44 @@
             <div class="widget-body">
                 <div class="table-responsive">
 
-                    <div class="alert alert-info text-center">
-                        <p>There is no data available here. Click please <a href="#">Add</a></p>
-                    </div>
+                    <?php if (empty($items)) { ?>
+                        <div class="alert alert-info text-center">
+                            <p>There is no data available here. Click please <a href="#">Add</a></p>
+                        </div>
+                    <?php  } else { ?>
 
-                    <table id="default-datatable" data-plugin="DataTable" class="table table-hover" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>#id</th>
-                                <th>Url</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Progress</th>
-                            </tr>
-                        </thead>
+                        <table id="default-datatable" data-plugin="DataTable" class="table table-hover" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>#id</th>
+                                    <th>Url</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Progress</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>
+                            <tbody>
+                                <?php foreach ($items as $item) { ?>
+                                    <tr>
+                                        <td><?= $item->id; ?></td>
+                                        <td><a href="<?= $item->url; ?>">asdas</a></td>
+                                        <td><?= $item->title; ?></td>
+                                        <td><?= $item->description; ?></td>
+                                        <td>
+                                            <input id="" type="checkbox" data-switchery data-color="#10c469" <?= ($item->isActive) ? "checked" : ""; ?> />
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-danger btn-outline"> <i class="fa fa-trash"></i> Delete</a>
+                                            <a href="#" class="btn btn-sm btn-success btn-outline"> <i class="fa fa-pencil-square-o"></i> Update</a>
+                                        </td>
+                                    </tr>
+                                <?php   } ?>
 
-                                    <input id="switch-2-2" type="checkbox" data-switchery data-color="#10c469" checked />
-
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-danger btn-outline"> <i class="fa fa-trash"></i> Delete</a>
-                                    <a href="#" class="btn btn-sm btn-success btn-outline"> <i class="fa fa-pencil-square-o"></i> Update</a>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    <?php } ?>
                 </div>
             </div>
         </div>
