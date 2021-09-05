@@ -12,6 +12,9 @@
                     <div class="form-group">
                         <label>Title</label>
                         <input class="form-control" placeholder="Title" name="title">
+                        <?php if (isset($form_error)) { ?>
+                            <small class="input-form-error"><?= form_error("title"); ?></small>
+                        <?php } ?>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
