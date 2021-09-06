@@ -28,7 +28,7 @@
                                     <th>Url</th>
                                     <th>Description</th>
                                     <th>Status</th>
-                                    <th>Progress</th>
+                                    <th>Process</th>
                                 </tr>
                             </thead>
 
@@ -48,6 +48,8 @@
                                                 <i class="fa fa-trash"></i> Delete
                                             </button>
                                             <a href="<?= base_url("product/update_form/$item->id"); ?>" class="btn btn-sm btn-success btn-outline"> <i class="fa fa-pencil-square-o"></i> Update</a>
+                                            <a href="<?= base_url("product/image_form/$item->id"); ?>" class="btn btn-sm btn-purple btn-outline"> <i class="fa fa-image"></i> Images</a>
+
                                         </td>
                                     </tr>
                                 <?php   } ?>
