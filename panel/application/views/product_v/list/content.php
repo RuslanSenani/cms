@@ -19,24 +19,26 @@
                         </div>
                     <?php  } else { ?>
 
-                        <table id="default-datatable" data-plugin="DataTable" class="table table-hover" cellspacing="0" width="100%">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th><i class="fa fa-reorder"></i></th>
                                     <th>#id</th>
-                                    <th>Url</th>
                                     <th>Title</th>
+                                    <th>Url</th>
                                     <th>Description</th>
                                     <th>Status</th>
                                     <th>Progress</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody class="sortable" data-url="<?= base_url("product/rankSetter"); ?>">
                                 <?php foreach ($items as $item) { ?>
-                                    <tr>
+                                    <tr id="ord-<?= $item->id; ?>">
+                                        <td><i class="fa fa-reorder alias"></i></td>
                                         <td><?= $item->id; ?></td>
-                                        <td><a href="<?= $item->url; ?>">asdas</a></td>
                                         <td><?= $item->title; ?></td>
+                                        <td><a href="<?= $item->url; ?>">asdas</a></td>
                                         <td><?= $item->description; ?></td>
                                         <td>
                                             <input data-url="<?= base_url("product/isActiveSetter/$item->id"); ?>" class="isActive" id="" type="checkbox" data-switchery data-color="#10c469" <?= ($item->isActive) ? "checked" : ""; ?> />
