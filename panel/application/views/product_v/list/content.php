@@ -39,7 +39,7 @@
                                         <td><?= $item->title; ?></td>
                                         <td><?= $item->description; ?></td>
                                         <td>
-                                            <input id="" type="checkbox" data-switchery data-color="#10c469" <?= ($item->isActive) ? "checked" : ""; ?> />
+                                            <input data-url="<?= base_url("product/isActiveSetter/$item->id"); ?>" class="isActive" id="" type="checkbox" data-switchery data-color="#10c469" <?= ($item->isActive) ? "checked" : ""; ?> />
                                         </td>
                                         <td>
                                             <button data-url="<?= base_url("product/delete/$item->id"); ?>" class="btn btn-sm btn-danger btn-outline remove-btn">
