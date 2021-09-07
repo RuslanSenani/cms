@@ -9,6 +9,7 @@ class Product extends CI_Controller
         parent::__construct();
         $this->viewFolder = "product_v";
         $this->load->model("product_model");
+        $this->load->model("product_image_model");
     }
     public function index()
     {
@@ -170,7 +171,7 @@ class Product extends CI_Controller
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    public function image_upload()
+    public function image_upload($id)
     {
         $config = array(
             "allowed_types" => "jpg|jpeg|pnh",
@@ -179,7 +180,11 @@ class Product extends CI_Controller
         $this->load->library("upload", $config);
         $upload = $this->upload->do_upload("file");
         if ($upload) {
-            echo "Success";
+            $uploaded_file = $this->upload->data("file_name");
+            $this->product_image_model->insert(array(
+                "img_url" => $uploaded_file,
+                "product_id" => $id
+            ));
         } else {
             echo "Faild";
         }
