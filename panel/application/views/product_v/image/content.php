@@ -1,9 +1,5 @@
 <div class="row">
-    <div class="col-md-12">
-        <h4 class="m-b-lg">
-            Add Product Pictures
-        </h4>
-    </div>
+    
     <div class="col-md-12">
         <div class="widget">
             <hr class="widget-separator">
@@ -28,28 +24,26 @@
         <div class="widget">
             <hr class="widget-separator">
             <div class="widget-body">
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-bordered table-striped table-hover pictures_list">
                     <thead>
-                        <tr>
-                            <th>#id</th>
-                            <th>İmage</th>
-                            <th>Picture Name</th>
-                            <th>Status</th>
-                            <th>Process</th>
-                        </tr>
+                        <th>#id</th>
+                        <th>İmage</th>
+                        <th>Picture Name</th>
+                        <th>Status</th>
+                        <th>Process</th>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>
+                            <td class="w50 text-center">1</td>
+                            <td class="w100 ">
                                 <img width="50" src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg" alt="" class="img-responsive">
                             </td>
                             <td>Ruslan</td>
-                            <td>
+                            <td class="w100 text-center">
                                 <input data-url="<?= base_url("product/isActiveSetter/"); ?>" class="isActive" id="" type="checkbox" data-switchery data-color="#10c469" <?= (true) ? "checked" : ""; ?> />
                             </td>
-                            <td>
-                                <button data-url="<?= base_url("product/delete"); ?>" class="btn btn-sm btn-danger btn-outline remove-btn">
+                            <td class="w100 text-center">
+                                <button data-url="<?= base_url("product/delete"); ?>" class="btn btn-sm btn-danger btn-block btn-outline remove-btn">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
                             </td>
