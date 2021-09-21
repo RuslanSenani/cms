@@ -11,7 +11,7 @@
             </header>
             <hr class="widget-separator">
             <div class="widget-body">
-                <div class="table-responsive">
+                <div class="widget p-lg">
 
                     <?php if (empty($items)) { ?>
                         <div class="alert alert-info text-center">
@@ -19,11 +19,11 @@
                         </div>
                     <?php  } else { ?>
 
-                        <table class="table table-hover">
+                        <table class="table table-hover table-bordered content_container">
                             <thead>
                                 <tr>
-                                    <th><i class="fa fa-reorder"></i></th>
-                                    <th>#id</th>
+                                    <th class="order "><i class="fa fa-reorder"></i></th>
+                                    <th class="w50 text-center">#id</th>
                                     <th>Title</th>
                                     <th>Url</th>
                                     <th>Description</th>
@@ -35,8 +35,8 @@
                             <tbody class="sortable" data-url="<?= base_url("product/rankSetter"); ?>">
                                 <?php foreach ($items as $item) { ?>
                                     <tr id="ord-<?= $item->id; ?>">
-                                        <td><i class="fa fa-reorder alias"></i></td>
-                                        <td><?= $item->id; ?></td>
+                                        <td class="order"><i class="fa fa-reorder alias"></i></td>
+                                        <td class="w50 text-center"><?= $item->id; ?></td>
                                         <td><?= $item->title; ?></td>
                                         <td><a href="<?= $item->url; ?>">asdas</a></td>
                                         <td><?= $item->description; ?></td>

@@ -71,6 +71,7 @@ var LIBS = {
 		"../panel/assets/libs/bower/fullcalendar/dist/fullcalendar.min.js"
 	],
 	dropzone: [
+		
 		"../panel/assets/libs/bower/dropzone/dist/min/dropzone.min.css",
 		"../panel/assets/libs/bower/dropzone/dist/min/dropzone.min.js"
 	],

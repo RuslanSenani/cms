@@ -1,5 +1,5 @@
 <?php
-class Product extends CI_Controller
+class News extends CI_Controller
 {
     private $viewFolder = "";
 
@@ -7,8 +7,8 @@ class Product extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->viewFolder = "product_v";
-        $this->load->model("product_model");
+        $this->viewFolder = "news_v";
+        $this->load->model("news_model");
         $this->load->model("product_image_model");
     }
     public function index()

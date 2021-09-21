@@ -1,5 +1,6 @@
 <?php
 
+
 function convertToSeo($string, $slug = '-', $extra = null)
 {
     if (strpos($string = htmlentities($string, ENT_QUOTES, 'UTF-8'), '&') !== false) {
@@ -37,3 +38,30 @@ function convertToSeo($string, $slug = '-', $extra = null)
 
     return strtolower(trim(preg_replace('~[^0-9a-z' . preg_quote($extra, '~') . ']++~i', $slug, $string), $slug));
 }
+function getFileName($id)
+{
+    $CI = get_instance();
+    $CI->load->model("product_image_model");
+    return $CI->product_image_model->get(array(
+        "id" => $id
+    ));
+}
+
+
+// function get_lang($l = '')
+// {
+//     if (isset($_COOKIE['lang'])) {
+//         if ($l == 'url_tag') {
+//             return $_COOKIE['url_tag'];
+//         } else {
+//             return $_COOKIE['lang'];
+//         }
+//     } else {
+
+//         if ($l == 'url_tag') {
+//             return 'AZ';
+//         } else {
+//             return 1;
+//         }
+//     }
+// }
