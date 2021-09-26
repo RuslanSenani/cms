@@ -84,7 +84,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0)">
+					<a href="<?= base_url("news"); ?>">
 						<i class="fa fa-newspaper-o" aria-hidden="true"></i>
 						<span class="menu-text">News</span>
 					</a>

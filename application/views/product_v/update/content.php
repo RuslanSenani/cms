@@ -20,7 +20,7 @@
                         <label>Description</label>
                         <textarea name="description" class="m-0" data-plugin="summernote" data-options="{height: 250}"><?= $item->description; ?></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-md btn-outline">Save</button>
+                    <button type="submit" class="btn btn-primary btn-md btn-outline">Update</button>
                     <a href="<?= base_url("product"); ?>" class="btn btn-outline btn-danger">Cancle</a>
                 </form>
             </div>

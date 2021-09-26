@@ -58,7 +58,7 @@ class Product extends CI_Controller
                 "title" => $this->input->post("title"),
                 "description" => $this->input->post("description"),
                 "url" => convertToSeo($this->input->post("title")),
-                "isActive" => true
+                "isActive" => false
             ));
             //TODO Alert Olunacaq
             if ($insert) {

@@ -1,9 +1,9 @@
 <?php
 
 
-class Product_model extends CI_Model
+class News_model extends CI_Model
 {
-    public $tableName = "products";
+    public $tableName = "news";
     public function __construct()
     {
         parent::__construct();
@@ -11,7 +11,7 @@ class Product_model extends CI_Model
 
     /*Butun qeyidleri getirecek olan metod.. */
 
-
+    
     // public function front_read($table, $ar = array('id!=' => 0), $order = array('id', 'desc'), $limit = 1000000, $start = 0)
     // {
     //     $result = $this->db->where($ar)->order_by($order[0], $order[1])->limit($limit, $start)->get($table)->result_array();
@@ -42,13 +42,5 @@ class Product_model extends CI_Model
     public function delete($where = array())
     {
         return $this->db->where($where)->delete($this->tableName);
-    }
-    public function search_more($title = null, $match = array())
-    {
-        return $this->db->like($title, $match)->get($this->tableName)->result();
-    }
-    public function search($title = null, $match = null, $wildcard = null)
-    {
-        return $this->db->like($title, $match, $wildcard)->get($this->tableName)->result();
     }
 }
