@@ -3,7 +3,6 @@ class Product extends CI_Controller
 {
     private $viewFolder = "";
 
-
     public function __construct()
     {
         parent::__construct();
@@ -11,9 +10,9 @@ class Product extends CI_Controller
         $this->load->model("product_model");
         $this->load->model("product_image_model");
     }
+
     public function index()
     {
-
         $viewData = new stdClass();
         /* Bazadan Products Table-den Datalarin getirilmesi*/
         $items = $this->product_model->get_all(array(), array("rank", "ASC"));
@@ -41,6 +40,7 @@ class Product extends CI_Controller
         $viewData->subViewFolder = "add";
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
+
     public function insert()
     {
         $this->load->library("form_validation");
@@ -100,6 +100,7 @@ class Product extends CI_Controller
         $viewData->item = $item;
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
+
     public function update($id)
     {
         $this->load->library("form_validation");
@@ -189,6 +190,7 @@ class Product extends CI_Controller
             redirect(base_url("product/image_form/$parent_id"));
         }
     }
+
     public function isActiveSetter($id)
     {
 
@@ -201,6 +203,7 @@ class Product extends CI_Controller
             ));
         }
     }
+
     public function isCoverSetter($id, $parent_id)
     {
         if ($id && $parent_id) {
@@ -227,6 +230,7 @@ class Product extends CI_Controller
             echo $render_html;
         }
     }
+
     public function imageIsActiveSetter($id)
     {
         if ($id) {
@@ -238,6 +242,7 @@ class Product extends CI_Controller
             ));
         }
     }
+
     public function rankSetter()
     {
         $data = $this->input->post("data");
@@ -257,6 +262,7 @@ class Product extends CI_Controller
             );
         }
     }
+
     public function imageRankSetter()
     {
         $data = $this->input->post("data");
@@ -276,6 +282,7 @@ class Product extends CI_Controller
             );
         }
     }
+
     public function image_form($id)
     {
         $viewData = new stdClass();
@@ -310,6 +317,7 @@ class Product extends CI_Controller
             echo "Faild";
         }
     }
+
     public function refresh_image_list($id)
     {
         $viewData = new stdClass();
