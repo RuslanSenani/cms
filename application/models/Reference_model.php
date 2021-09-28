@@ -1,9 +1,9 @@
 <?php
 
 
-class News_model extends CI_Model
+class Reference_model extends CI_Model
 {
-    public  $tableName = "news";
+    public $tableName = "references";
     public function __construct()
     {
         parent::__construct();
@@ -24,7 +24,7 @@ class News_model extends CI_Model
         return $this->db->where($where)->order_by($order[0], $order[1])->get($this->tableName)->result();
     }
 
-    public function insert($data = array()): bool
+    public function insert($data = array())
     {
         return $this->db->insert($this->tableName, $data);
     }
@@ -34,7 +34,7 @@ class News_model extends CI_Model
         return $this->db->where($where)->get($this->tableName)->row();
     }
 
-    public function update($where = array(), $data = array()): bool
+    public function update($where = array(), $data = array())
     {
         return $this->db->where($where)->update($this->tableName, $data);
     }

@@ -42,7 +42,6 @@
                                         <td><?= $item->title; ?></td>
                                         <td><a href="<?= $item->url; ?>"><?= $item->url; ?></a></td>
                                         <td><?= $item->description; ?></td>
-
                                         <td><?= $item->news_type; ?></td>
                                         <td class="text-center">
                                             <?php if ($item->news_type == "image") { ?>
@@ -59,10 +58,10 @@
                                             </iframe>
                                             <?php } ?>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <input data-url="<?= base_url("news/isActiveSetter/$item->id"); ?>" class="isActive" id="" type="checkbox" data-switchery data-color="#10c469" <?= ($item->isActive) ? "checked" : ""; ?> />
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <button data-url="<?= base_url("news/delete/$item->id"); ?>" class="btn btn-sm btn-danger btn-outline remove-btn">
                                                 <i class="fa fa-trash"></i> Delete
                                             </button>
