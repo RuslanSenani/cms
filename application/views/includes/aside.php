@@ -105,7 +105,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a href="<?= base_url("brands"); ?>">
                         <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
                         <span class="menu-text">Brands</span>
                     </a>

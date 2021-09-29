@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
 
@@ -28,7 +27,7 @@ $(document).ready(function () {
         var $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
         if (typeof $data !== "undefined" && typeof $data_url !== "undefined") {
-            $.post($data_url, { data: $data }, function (result) {
+            $.post($data_url, {data: $data}, function (result) {
             })
         }
     })
@@ -37,7 +36,7 @@ $(document).ready(function () {
         var $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
         if (typeof $data !== "undefined" && typeof $data_url !== "undefined") {
-            $.post($data_url, { data: $data }, function (result) {
+            $.post($data_url, {data: $data}, function (result) {
                 $(".image_list_container").html(result);
 
                 $('[data-switchery]').each(function () {
@@ -60,7 +59,8 @@ $(document).ready(function () {
     $(".content_container, .image_list_container").on("sortupdate", ".sortable", function (event, ui) {
         var $data = $(this).sortable("serialize");
         var $data_url = $(this).data("url");
-        $.post($data_url, { data: $data }, function (result) { })
+        $.post($data_url, {data: $data}, function (result) {
+        })
     })
 
 
