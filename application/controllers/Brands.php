@@ -197,8 +197,14 @@ class Brands extends CI_Controller
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
     }
+
+
+
     public function delete($id)
     {
+        $fileName=$this->brand_model->get(array(
+            "id"=>$id
+        ));
         $delete = $this->brand_model->delete(array(
             "id" => $id
         ));
@@ -215,6 +221,7 @@ class Brands extends CI_Controller
                 "type" => "error"
             );
         }
+        unlink("uploads/{$this->viewFolder}/$fileName->img_url");
         //Is Result-un Sessiona Yazma
         $this->session->set_flashdata('alert', $alert);
         redirect(base_url("brands"));

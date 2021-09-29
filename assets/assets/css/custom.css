@@ -1,32 +1,43 @@
-.input-form-error{
-font-size: 12px;
-color: #ff5b5b;
-font-style: italic;
+.input-form-error {
+    font-size: 12px;
+    color: #ff5b5b;
+    font-style: italic;
 }
 
-td{
+td {
     vertical-align: middle !important;
 }
-.order{
+
+.order {
     width: 50px;
     text-align: center;
 }
-.w100{
+
+.w100 {
     width: 100px;
 }
-.w200{
+
+
+.w200 {
     width: 200px;
 }
-.w50{
+
+.w150 {
+    width: 150px;
+}
+
+.w50 {
     width: 50px;
 }
-.wAuto{
+
+.wAuto {
     width: auto;
 }
 
-.sortable{
+.sortable {
     cursor: move;
 }
-.video_url_container{
+
+.video_url_container {
     display: none;
 }

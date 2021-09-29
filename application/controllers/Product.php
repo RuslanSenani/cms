@@ -182,7 +182,6 @@ class Product extends CI_Controller
             "id" => $id
         ));
 
-
         if ($delete) {
             unlink("uploads/{$this->viewFolder}/$fileName->img_url");
             redirect(base_url("product/image_form/$parent_id"));

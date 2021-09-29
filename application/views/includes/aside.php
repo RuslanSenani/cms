@@ -93,7 +93,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)">
+                    <a href="<?= base_url("courses"); ?>">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         <span class="menu-text">Courses</span>
                     </a>

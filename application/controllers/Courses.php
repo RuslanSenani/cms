@@ -1,6 +1,6 @@
 <?php
 
-class References extends CI_Controller
+class Courses extends CI_Controller
 {
     private $viewFolder = "";
 
@@ -8,8 +8,8 @@ class References extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->viewFolder = "references_v";
-        $this->load->model("reference_model");
+        $this->viewFolder = "courses_v";
+        $this->load->model("course_model");
         // $this->load->model("product_image_model");
     }
 
@@ -18,7 +18,7 @@ class References extends CI_Controller
 
         $viewData = new stdClass();
         /* Bazadan Products Table-den Datalarin getirilmesi*/
-        $items = $this->reference_model->get_all(array(), array("rank", "ASC"));
+        $items = $this->course_model->get_all(array(), array("rank", "ASC"));
         /* View'e gonderilecek deyiskenlerin set edilmesi */
         $viewData->viewFolder = $this->viewFolder;
         // $viewData->strings = $this->string();
@@ -37,6 +37,7 @@ class References extends CI_Controller
 
     public function insert()
     {
+
         $this->load->library("form_validation");
         if ($_FILES['img_url']['name'] == "") {
             $alert = array(
@@ -46,9 +47,10 @@ class References extends CI_Controller
             );
 
             $this->session->set_flashdata('alert', $alert);
-            redirect(base_url("references/new_form"));
+            redirect(base_url("courses/new_form"));
         }
         $this->form_validation->set_rules("title", "Title", "required|trim");
+        $this->form_validation->set_rules("event_date", "Event Date", "required|trim");
         $this->form_validation->set_message(
             array(
                 "required" => "<b>{field}</b> Bolmesi Doldurulmalidir Bura Bazadan Tercumeler Gelecek",
@@ -68,10 +70,11 @@ class References extends CI_Controller
             $upload = $this->upload->do_upload("img_url");
             if ($upload) {
                 $uploaded_file = $this->upload->data("file_name");
-                $insert = $this->reference_model->insert(array(
+                $insert = $this->course_model->insert(array(
                     "title" => $this->input->post("title"),
                     "description" => $this->input->post("description"),
                     "url" => convertToSeo($this->input->post("title")),
+                    "event_date"=>$this->input->post("event_date"),
                     "img_url" => $uploaded_file,
                 ));
                 //TODO Alert Olunacaq
@@ -95,14 +98,14 @@ class References extends CI_Controller
                     "type" => "error"
                 );
                 $this->session->set_flashdata('alert', $alert);
-                redirect(base_url("references/new_form"));
+                redirect(base_url("courses/new_form"));
                 die();
             }
 
 
             //Is Result-un Sessiona Yazma
             $this->session->set_flashdata('alert', $alert);
-            redirect(base_url("references"));
+            redirect(base_url("courses"));
         } else {
             $viewData = new stdClass();
             $viewData->viewFolder = $this->viewFolder;
@@ -118,7 +121,7 @@ class References extends CI_Controller
 
         $viewData = new stdClass();
         /* Bazadan Products Table-den Datalarin getirilmesi*/
-        $item = $this->reference_model->get(array(
+        $item = $this->course_model->get(array(
             "id" => $id
         ));
 
@@ -132,6 +135,7 @@ class References extends CI_Controller
     {
         $this->load->library("form_validation");//**
         $this->form_validation->set_rules("title", "Title", "required|trim");//**
+        $this->form_validation->set_rules("event_date", "Event Date", "required|trim");//**
         $this->form_validation->set_message(
             array(
                 "required" => "<b>{field}</b> Bolmesi Doldurulmalidir Bura Bazadan Tercumeler Gelecek",
@@ -154,6 +158,7 @@ class References extends CI_Controller
                     $data = array(
                         "title" => $this->input->post("title"),
                         "description" => $this->input->post("description"),
+                        "event_date" => $this->input->post("event_date"),
                         "url" => convertToSeo($this->input->post("title")),
                         "img_url" => $uploaded_file,
                     );
@@ -164,17 +169,18 @@ class References extends CI_Controller
                         "type" => "error"
                     );
                     $this->session->set_flashdata('alert', $alert);
-                    redirect(base_url("references/update_form/$id"));
+                    redirect(base_url("courses/update_form/$id"));
                     die();
                 }
             } else {
                 $data = array(
                     "title" => $this->input->post("title"),
                     "description" => $this->input->post("description"),
+                    "event_date" => $this->input->post("event_date"),
                     "url" => convertToSeo($this->input->post("title")),
                 );
             }
-            $update = $this->reference_model->update(array("id" => $id), $data);
+            $update = $this->course_model->update(array("id" => $id), $data);
             //TODO Alert Olunacaq
             if ($update) {
                 $alert = array(
@@ -191,21 +197,22 @@ class References extends CI_Controller
             }
             //Is Result-un Sessiona Yazma
             $this->session->set_flashdata('alert', $alert);
-            redirect(base_url("references"));
+            redirect(base_url("courses"));
         } else {
             $viewData = new stdClass();
             $viewData->viewFolder = $this->viewFolder;
             $viewData->subViewFolder = "update";
             $viewData->form_error = true;
-            $viewData->item = $this->reference_model->get(array(
+            $viewData->item = $this->course_model->get(array(
                 "id" => $id
             ));
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
     }
+
     public function delete($id)
     {
-        $delete = $this->reference_model->delete(array(
+        $delete = $this->course_model->delete(array(
             "id" => $id
         ));
         if ($delete) {
@@ -223,7 +230,7 @@ class References extends CI_Controller
         }
         //Is Result-un Sessiona Yazma
         $this->session->set_flashdata('alert', $alert);
-        redirect(base_url("references"));
+        redirect(base_url("courses"));
     }
 
 
@@ -232,7 +239,7 @@ class References extends CI_Controller
 
         if ($id) {
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
-            $this->reference_model->update(array(
+            $this->course_model->update(array(
                 "id" => $id
             ), array(
                 "isActive" => $isActive
@@ -247,7 +254,7 @@ class References extends CI_Controller
         parse_str($data, $order);
         $items = $order["ord"];
         foreach ($items as $rank => $id) {
-            $this->reference_model->update(
+            $this->course_model->update(
                 array(
                     "id" => $id,
                     "rank !=" => $rank

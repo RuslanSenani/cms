@@ -47,6 +47,9 @@ function getFileName($id)
     ));
 }
 
+function get_readable_date($date){
+return strftime('%e %B %Y',strtotime($date));
+}
 
 // function get_lang($l = '')
 // {
