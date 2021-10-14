@@ -38,17 +38,30 @@ function convertToSeo($string, $slug = '-', $extra = null)
 
     return strtolower(trim(preg_replace('~[^0-9a-z' . preg_quote($extra, '~') . ']++~i', $slug, $string), $slug));
 }
-function getFileName($id)
+
+function getFileName($id, $model_name)
 {
     $CI = get_instance();
-    $CI->load->model("product_image_model");
-    return $CI->product_image_model->get(array(
+    $CI->load->model($model_name);
+    return $CI->$model_name->get(array(
         "id" => $id
     ));
 }
 
-function get_readable_date($date){
-return strftime('%e %B %Y',strtotime($date));
+function get_readable_date($date)
+{
+    return strftime('%e %B %Y', strtotime($date));
+}
+
+function get_active_user()
+{
+    $CI = get_instance();
+    $user = $CI->session->userdata("user");
+    if ($user)
+        return $user;
+    else
+        return false;
+
 }
 
 // function get_lang($l = '')

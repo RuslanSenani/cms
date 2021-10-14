@@ -9,6 +9,10 @@ class Product extends CI_Controller
         $this->viewFolder = "product_v";
         $this->load->model("product_model");
         $this->load->model("product_image_model");
+
+        if (!get_active_user()) {
+            redirect(base_url("login"));
+        }
     }
 
     public function index()
@@ -177,7 +181,7 @@ class Product extends CI_Controller
 
     public function imageDelete($id, $parent_id)
     {
-        $fileName = getFileName($id);
+        $fileName = getFileName($id,"product_image_model");
         $delete = $this->product_image_model->delete(array(
             "id" => $id
         ));

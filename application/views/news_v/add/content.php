@@ -19,7 +19,8 @@
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea name="description" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
+                        <textarea name="description" class="m-0" data-plugin="summernote"
+                                  data-options="{height: 250}"></textarea>
                     </div>
                     <!-- section -->
 
@@ -33,11 +34,13 @@
                         </div>
                     </div><!-- .form-group -->
                     <?php if (isset($form_error)) { ?>
-                        <div class="form-group image_upload_container" style="display:<?= ($news_type == "image") ? "block" : "none"; ?>;">
+                        <div class="form-group image_upload_container"
+                             style="display:<?= ($news_type == "image") ? "block" : "none"; ?>;">
                             <label>Choose Image</label>
                             <input type="file" name="img_url" class="form-control">
                         </div>
-                        <div class="form-group video_url_container" style="display:<?= ($news_type == "video") ? "block" : "none"; ?>;">
+                        <div class="form-group video_url_container"
+                             style="display:<?= ($news_type == "video") ? "block" : "none"; ?>;">
                             <label>Video URL</label>
                             <input class="form-control" placeholder="Video url-ni bura elave edin" name="video_url">
                             <?php if (isset($form_error)) { ?>
