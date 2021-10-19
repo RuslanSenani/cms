@@ -6,7 +6,7 @@
                 <div class="avatar avatar-md avatar-circle">
                     <a href="javascript:void(0)"><img class="img-responsive"
                                                       src="<?= base_url("assets"); ?>/assets/images/221.jpg"
-                                                      alt="avatar"/></a>
+                                                      alt="<?= convertToSeo($user->full_name); ?>"/></a>
                 </div><!-- .avatar -->
             </div>
             <div class="media-body">
@@ -63,6 +63,18 @@
                     </a>
                 </li>
                 <li>
+                    <a href="<?= base_url("settings"); ?>">
+                        <i class="menu-icon zmdi zmdi-settings zmdi-hc-lg"></i>
+                        <span class="menu-text">Website Setings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url("emailsettings"); ?>">
+                        <i class="fa fa-envelope"></i>
+                        <span class="menu-text">E-mail Settings</span>
+                    </a>
+                </li>
+                <li>
                     <a href="<?= base_url("galleries"); ?>">
                         <i class="fa fa-image"></i>
                         <span class="menu-text">Gallery Actions</span>
@@ -81,6 +93,27 @@
                         <span class="menu-text">Products</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= base_url("services"); ?>">
+                        <i class="menu-icon  fa fa-list"></i>
+                        <span class="menu-text">Services</span>
+                    </a>
+                </li>
+
+
+                <li class="has-submenu">
+                    <a href="javascript:void(0)" class="submenu-toggle">
+                        <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
+                        <span class="menu-text">Portfolio Actions</span>
+                        <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="buttons.html"><span class="menu-text">Buttons</span></a></li>
+                        <li><a href="alerts.html"><span class="menu-text">Alerts</span></a></li>
+                    </ul>
+                </li>
+
+
                 <li>
                     <a href="<?= base_url("news"); ?>">
                         <i class="fa fa-newspaper-o" aria-hidden="true"></i>

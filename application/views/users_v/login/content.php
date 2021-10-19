@@ -1,9 +1,7 @@
 <div class="simple-page-wrap">
     <div class="simple-page-logo animated swing">
-        <a href="#">
-            <span><i class="fa fa-gg"></i></span>
-            <span>CMS</span>
-        </a>
+        <span style="color:white"><i class="fa fa-gg"></i></span>
+        <span style="color:white">CMS</span>
     </div><!-- logo -->
     <div class="simple-page-form animated flipInY" id="login-form">
         <h4 class="form-title m-b-xl text-center">Sign In With Your CMS Account</h4>
@@ -33,7 +31,7 @@
     </div>
 
     <div class="simple-page-footer">
-        <p><a href="password-forget.html">FORGOT YOUR PASSWORD ?</a></p>
+        <p><a href="<?= base_url("forget-password"); ?>">FORGOT YOUR PASSWORD ?</a></p>
 
     </div>
 

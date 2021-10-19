@@ -64,6 +64,58 @@ function get_active_user()
 
 }
 
+function send_email($toEmail = "", $subject = "", $message = "")
+{
+    $CI = get_instance();
+    $CI->load->model("emailsettings_model");
+    $email_settings = $CI->emailsettings_model->get(
+        array(
+            "isActive" => 1
+        )
+    );
+
+    $config = array(
+        "protocol" => $email_settings->protocol,
+        "smtp_host" => $email_settings->host,
+        "smtp_port" => $email_settings->port,
+        "smtp_user" => $email_settings->user,
+        "smtp_pass" => $email_settings->password,
+        "starttls" => true,
+        "charset" => "utf-8",
+        "mailtype" => "html",
+        "wordwrap" => true,
+        "newline" => "\r\n"
+    );
+    $CI->load->library("email", $config);
+    $CI->email->from($email_settings->from, $email_settings->user_name);
+    $CI->email->to($toEmail);
+    $CI->email->subject($subject);
+    $CI->email->message($message);
+    return $CI->email->send();
+}
+
+function get_settings()
+{
+    $CI = get_instance();
+    $CI->load->model("settings_model");
+    if ($CI->session->userdata("settings")) {
+        $settings = $CI->session->userdata("settings");
+    } else {
+        $settings = $CI->settings_model->get();
+        if (!$settings) {
+            $settings = new  stdClass();
+            $settings->company_name = "CMS";
+            $settings->logo = "default";
+
+        }
+        $CI->session->set_userdata("settings", $settings);
+
+    }
+
+    return $settings;
+}
+
+
 // function get_lang($l = '')
 // {
 //     if (isset($_COOKIE['lang'])) {
