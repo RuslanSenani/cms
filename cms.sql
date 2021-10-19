@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2021 at 06:16 PM
+-- Generation Time: Oct 19, 2021 at 12:59 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -592,6 +592,33 @@ INSERT INTO `dummydata` (`id`, `list`, `name`, `phone`, `email`, `address`, `reg
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `email_settings`
+--
+
+CREATE TABLE `email_settings` (
+  `id` int(11) NOT NULL,
+  `protocol` varchar(10) NOT NULL,
+  `host` varchar(100) NOT NULL,
+  `port` varchar(10) NOT NULL,
+  `user` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `from` varchar(100) NOT NULL,
+  `to` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `isActive` tinyint(1) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `email_settings`
+--
+
+INSERT INTO `email_settings` (`id`, `protocol`, `host`, `port`, `user`, `password`, `from`, `to`, `user_name`, `isActive`, `createdAt`) VALUES
+(1, 'smtp', 'ssl://smtp.gmail.com', '465', 'sendmail615@gmail.com', 'send32sendmail', 'sendmail615@gmail.com', 'abbasov3232@inbox.ru', 'CMS', 1, '2021-10-15 14:59:33');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `files`
 --
 
@@ -716,6 +743,53 @@ CREATE TABLE `popups` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `portfolios`
+--
+
+CREATE TABLE `portfolios` (
+  `id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `portfolio_url` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `client` int(11) NOT NULL,
+  `place` varchar(100) NOT NULL,
+  `rank` tinyint(1) NOT NULL,
+  `isActive` tinyint(1) NOT NULL,
+  `finishedAt` datetime NOT NULL,
+  `createdAt` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `portfolio_categories`
+--
+
+CREATE TABLE `portfolio_categories` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `portfolio_images`
+--
+
+CREATE TABLE `portfolio_images` (
+  `id` int(11) NOT NULL,
+  `portfolio_id` int(11) NOT NULL,
+  `img_url` varchar(255) NOT NULL,
+  `rank` tinyint(1) NOT NULL,
+  `isActive` tinyint(1) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -782,6 +856,23 @@ CREATE TABLE `references` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `img_url` varchar(255) NOT NULL,
+  `rank` tinyint(1) NOT NULL DEFAULT 0,
+  `isActive` tinyint(1) NOT NULL DEFAULT 0,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `settings`
 --
 
@@ -789,6 +880,7 @@ CREATE TABLE `settings` (
   `id` int(11) UNSIGNED NOT NULL,
   `company_name` varchar(255) COLLATE utf8_turkish_ci DEFAULT NULL,
   `about_us` longtext COLLATE utf8_turkish_ci DEFAULT NULL,
+  `address` longtext COLLATE utf8_turkish_ci NOT NULL,
   `mission` longtext COLLATE utf8_turkish_ci DEFAULT NULL,
   `vision` longtext COLLATE utf8_turkish_ci DEFAULT NULL,
   `logo` varchar(255) COLLATE utf8_turkish_ci DEFAULT NULL,
@@ -796,14 +888,21 @@ CREATE TABLE `settings` (
   `phone_2` varchar(15) COLLATE utf8_turkish_ci DEFAULT NULL,
   `fax_1` varchar(15) COLLATE utf8_turkish_ci DEFAULT NULL,
   `fax_2` varchar(15) COLLATE utf8_turkish_ci DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8_turkish_ci DEFAULT NULL,
+  `email` varchar(60) COLLATE utf8_turkish_ci DEFAULT NULL,
   `facebook` varchar(255) COLLATE utf8_turkish_ci DEFAULT NULL,
   `twitter` varchar(255) COLLATE utf8_turkish_ci DEFAULT NULL,
   `instagram` varchar(255) COLLATE utf8_turkish_ci DEFAULT NULL,
   `linkedin` varchar(255) COLLATE utf8_turkish_ci DEFAULT NULL,
-  `createdAt` datetime DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `company_name`, `about_us`, `address`, `mission`, `vision`, `logo`, `phone_1`, `phone_2`, `fax_1`, `fax_2`, `email`, `facebook`, `twitter`, `instagram`, `linkedin`, `createdAt`, `updatedAt`) VALUES
+(1, 'New Company', '                                    ', '                                    ', '                                    ', '                                    ', 'new-company.png', '0553967944', '0553967942', '0553967947', '0553967946', 'abbasov3232@inbox.ru', '/facebook', '/Twitter', '/Instagram', '/Linkedin', '2021-10-18 18:06:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -894,6 +993,12 @@ ALTER TABLE `dummydata`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `email_settings`
+--
+ALTER TABLE `email_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `files`
 --
 ALTER TABLE `files`
@@ -930,6 +1035,24 @@ ALTER TABLE `popups`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `portfolios`
+--
+ALTER TABLE `portfolios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `portfolio_categories`
+--
+ALTER TABLE `portfolio_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `portfolio_images`
+--
+ALTER TABLE `portfolio_images`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -945,6 +1068,12 @@ ALTER TABLE `product_images`
 -- Indexes for table `references`
 --
 ALTER TABLE `references`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -994,6 +1123,12 @@ ALTER TABLE `dummydata`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
 
 --
+-- AUTO_INCREMENT for table `email_settings`
+--
+ALTER TABLE `email_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
@@ -1030,6 +1165,24 @@ ALTER TABLE `popups`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `portfolios`
+--
+ALTER TABLE `portfolios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `portfolio_categories`
+--
+ALTER TABLE `portfolio_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `portfolio_images`
+--
+ALTER TABLE `portfolio_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -1048,10 +1201,16 @@ ALTER TABLE `references`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `slides`
