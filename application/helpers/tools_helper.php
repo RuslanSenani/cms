@@ -41,9 +41,9 @@ function convertToSeo($string, $slug = '-', $extra = null)
 
 function getFileName($id, $model_name)
 {
-    $CI = get_instance();
-    $CI->load->model($model_name);
-    return $CI->$model_name->get(array(
+    $t = get_instance();
+    $t->load->model($model_name);
+    return $t->$model_name->get(array(
         "id" => $id
     ));
 }
@@ -55,8 +55,8 @@ function get_readable_date($date)
 
 function get_active_user()
 {
-    $CI = get_instance();
-    $user = $CI->session->userdata("user");
+    $t = get_instance();
+    $user = $t->session->userdata("user");
     if ($user)
         return $user;
     else
@@ -66,9 +66,9 @@ function get_active_user()
 
 function send_email($toEmail = "", $subject = "", $message = "")
 {
-    $CI = get_instance();
-    $CI->load->model("emailsettings_model");
-    $email_settings = $CI->emailsettings_model->get(
+    $t = get_instance();
+    $t->load->model("emailsettings_model");
+    $email_settings = $t->emailsettings_model->get(
         array(
             "isActive" => 1
         )
@@ -86,33 +86,48 @@ function send_email($toEmail = "", $subject = "", $message = "")
         "wordwrap" => true,
         "newline" => "\r\n"
     );
-    $CI->load->library("email", $config);
-    $CI->email->from($email_settings->from, $email_settings->user_name);
-    $CI->email->to($toEmail);
-    $CI->email->subject($subject);
-    $CI->email->message($message);
-    return $CI->email->send();
+    $t->load->library("email", $config);
+    $t->email->from($email_settings->from, $email_settings->user_name);
+    $t->email->to($toEmail);
+    $t->email->subject($subject);
+    $t->email->message($message);
+    return $t->email->send();
 }
 
 function get_settings()
 {
-    $CI = get_instance();
-    $CI->load->model("settings_model");
-    if ($CI->session->userdata("settings")) {
-        $settings = $CI->session->userdata("settings");
+    $t = get_instance();
+    $t->load->model("settings_model");
+    if ($t->session->userdata("settings")) {
+        $settings = $t->session->userdata("settings");
     } else {
-        $settings = $CI->settings_model->get();
+        $settings = $t->settings_model->get();
         if (!$settings) {
             $settings = new  stdClass();
             $settings->company_name = "CMS";
             $settings->logo = "default";
 
         }
-        $CI->session->set_userdata("settings", $settings);
+        $t->session->set_userdata("settings", $settings);
 
     }
 
     return $settings;
+}
+
+function get_category_name($category_id = 0)
+{
+    $t = get_instance();
+    $t->load->model("portfolio_category_model");
+    $category = $t->portfolio_category_model->get(
+        array(
+            "id" => $category_id
+        )
+    );
+    if ($category)
+        return $category->title;
+    else
+        return "<b style='color: red'>Not Defined</b>";
 }
 
 

@@ -95,7 +95,7 @@
                 </li>
                 <li>
                     <a href="<?= base_url("services"); ?>">
-                        <i class="menu-icon  fa fa-list"></i>
+                        <i class="menu-icon  fa fa-cutlery"></i>
                         <span class="menu-text">Services</span>
                     </a>
                 </li>
@@ -103,13 +103,22 @@
 
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
-                        <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
+                        <i class="menu-icon fa fa-lightbulb-o"></i>
                         <span class="menu-text">Portfolio Actions</span>
                         <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="buttons.html"><span class="menu-text">Buttons</span></a></li>
-                        <li><a href="alerts.html"><span class="menu-text">Alerts</span></a></li>
+                        <li>
+                            <a href="<?= base_url("portfolio_categories"); ?>">
+                                <span class="menu-text">Portfolio Categories</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url("portfolio"); ?>">
+                                <span class="menu-text">Portfolios</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
 

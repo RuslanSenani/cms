@@ -22,14 +22,12 @@
                         <textarea name="description" class="m-0" data-plugin="summernote"
                                   data-options="{height: 250}"></textarea>
                     </div>
-                    <!-- section -->
                     <div class="row">
                         <div class="col-md-3">
                             <label for="datetimepicker1">Course Date</label>
                             <input type="hidden" name="event_date" id="datetimepicker1" data-plugin="datetimepicker"
                                    data-options="{ inline: true, viewMode: 'days',format:'YYYY-MM-DD HH:mm:ss'}"/>
-                        </div><!-- END column -->
-
+                        </div>
                     </div>
                     <div class="form-group image_upload_container">
                         <label>Choose Image</label>
