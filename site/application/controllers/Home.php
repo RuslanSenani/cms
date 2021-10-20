@@ -59,7 +59,7 @@ class Home extends CI_Controller
             array(
                 "isActive" => 1,
                 "id !=" => $viewData->product->id,
-            ),"rand()", array("start" => 0, "count" => 3)
+            ), "rand()", array("start" => 0, "count" => 3)
         );
         $this->load->view($viewData->viewFolder, $viewData);
     }
