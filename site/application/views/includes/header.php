@@ -70,7 +70,7 @@
                                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">About Us</a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="features-dark-page.html">About Us</a></li>
-                                                    <li><a href="features-typography.html">Portfilio</a></li>
+                                                    <li><a href="<?= base_url("portfolio-list"); ?>">Portfilio</a></li>
                                                     <li><a href="features-backgrounds.html">News</a></li>
                                                     <li><a href="features-grid.html">References</a></li>
                                                 </ul>

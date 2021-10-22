@@ -50,6 +50,7 @@ function getFileName($id, $model_name)
 
 function get_readable_date($date)
 {
+    setlocale(LC_ALL, 'az_AZ.UTF-8', 'az_AZ', 'az', 'azerbaijan');
     return strftime('%e %B %Y', strtotime($date));
 }
 

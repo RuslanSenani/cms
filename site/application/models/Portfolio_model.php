@@ -4,6 +4,7 @@
 class Portfolio_model extends CI_Model
 {
     public $tableName = "portfolios";
+
     public function __construct()
     {
         parent::__construct();
@@ -18,10 +19,12 @@ class Portfolio_model extends CI_Model
     //     return $result != null ? $result : array();
     // }
 
-    public function get_all($where = array(), $order = array('id', 'ASC'))
+    public function get_all($where = array(), $order = "", $limit = array("count" => 0, "start" => 0))
     {
-
-        return $this->db->where($where)->order_by($order[0], $order[1])->get($this->tableName)->result();
+        $this->db->where($where)->order_by($order);
+        if ($limit['count'] != 0 && $limit['start'] != 0)
+            $this->db->limit($limit['count'], $limit['start']);
+        return $this->db->get($this->tableName)->result();
     }
 
     public function insert($data = array())
@@ -43,10 +46,12 @@ class Portfolio_model extends CI_Model
     {
         return $this->db->where($where)->delete($this->tableName);
     }
+
     public function search_more($title = null, $match = array())
     {
         return $this->db->like($title, $match)->get($this->tableName)->result();
     }
+
     public function search($title = null, $match = null, $wildcard = null)
     {
         return $this->db->like($title, $match, $wildcard)->get($this->tableName)->result();
